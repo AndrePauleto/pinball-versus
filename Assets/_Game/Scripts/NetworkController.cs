@@ -5,7 +5,7 @@ using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 
-using Hastable = ExitGames.Client.Photon.Hashtable;
+//using Hastable = ExitGames.Client.Photon.Hashtable;
 using ExitGames.Client.Photon;
 
 public class NetworkController : MonoBehaviourPunCallbacks
@@ -13,29 +13,33 @@ public class NetworkController : MonoBehaviourPunCallbacks
     public Lobby lobbyScript;
     public byte maxPlayers = 2;
 
+    /*
     public override void OnEnable()
     {
         base.OnEnable();
 
         CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimeIsExpired;
     }
+    */
 
     private void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
+    /*
     public override void OnDisable()
     {
         base.OnDisable();
 
         CountdownTimer.OnCountdownTimerHasExpired -= OnCountdownTimeIsExpired;
     }
-
+    
     void OnCountdownTimeIsExpired()
     {
         StartGame();
     }
+    */
 
     public override void OnConnected()
     {
@@ -85,16 +89,23 @@ public class NetworkController : MonoBehaviourPunCallbacks
             {
                if (item.IsMasterClient)
                {
+                    /*
                     Hastable props = new Hastable {
                         {CountdownTimer.CountdownStartTime, (float) PhotonNetwork.Time}
                     };
 
                     PhotonNetwork.CurrentRoom.SetCustomProperties(props);
-               }
+                    */
+
+                    lobbyScript.lobbyCountdown.gameObject.SetActive(true);
+                    lobbyScript.lobbyWaiting.gameObject.SetActive(false);
+                    StartGame();
+                }
             }
         }
     }
 
+    /*
     public override void OnRoomPropertiesUpdate(Hastable propertiesThatChanged)
     {
         if (propertiesThatChanged.ContainsKey(CountdownTimer.CountdownStartTime))
@@ -103,6 +114,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
             lobbyScript.lobbyWaiting.gameObject.SetActive(false);
         }
     }
+    */
 
     void StartGame()
     {

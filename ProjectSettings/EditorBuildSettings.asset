@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/_Game/Scenes/Lobby.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/_Game/Scenes/Game.unity
+    guid: d05d149a65ec777418a00c2d921120e5
+  - enabled: 1
     path: Assets/_Pinball/Scenes/Main.unity
     guid: edb2bc20012bd8049b76eb8c417f4338
   m_configObjects: {}
